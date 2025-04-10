@@ -15,7 +15,7 @@ class Parser
      * @param string $sitemap_location The path to the sitemap file or URL.
      * @return array<mixed> The parsed entries.
      */
-    public static function parser(string $sitemap_location): array
+    public static function parse(string $sitemap_location): array
     {
         // Get the extension of the sitemap file
         $extension = pathinfo($sitemap_location, PATHINFO_EXTENSION);
@@ -64,6 +64,14 @@ class Parser
 
         // Execute the request
         $response = curl_exec($ch);
+
+        // Response code
+        $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        // Check response code
+        if ($responseCode >= 300) {
+            return "";
+        }
 
         // Check for errors
         if (curl_errno($ch)) {

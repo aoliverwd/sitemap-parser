@@ -6,7 +6,7 @@ test("it parses a valid XML sitemap file", function () {
 });
 
 test("it parses a valid XML sitemap URL", function () {
-    $result = \AOWD\SitemapParser\Parser::parse("http://localhost:3000/index.xml");
+    $result = \AOWD\SitemapParser\Parser::parse("http://localhost:50967/index.xml");
     expect($result)->toBeArray();
 });
 
